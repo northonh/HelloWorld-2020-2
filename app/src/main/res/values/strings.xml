@@ -2,4 +2,8 @@
     <string name="app_name">Hello World</string>
     <string name="clique_aqui">Clique aqui!</string>
     <string name="hello_world">Hello World!</string>
+    <string name="zero">0</string>
+    <string name="um">1</string>
+    <string name="dois">2</string>
+    <string name="limpar">limpar</string>
 </resources>
