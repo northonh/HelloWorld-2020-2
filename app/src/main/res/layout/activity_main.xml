@@ -20,12 +20,66 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/zeroBt"
+            android:id="@+id/seteBt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="onClick"
-            android:text="@string/zero" />
+            android:text="@string/sete" />
+
+        <Button
+            android:id="@+id/oitoBt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="@string/oito" />
+
+        <Button
+            android:id="@+id/noveBt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="@string/nove" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/quatroBt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="@string/quatro" />
+
+        <Button
+            android:id="@+id/cincoBt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="@string/cinco" />
+
+        <Button
+            android:id="@+id/seisBt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="@string/seis" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
         <Button
             android:id="@+id/umBt"
@@ -43,13 +97,21 @@
             android:onClick="onClick"
             android:text="@string/dois" />
 
+        <Button
+            android:id="@+id/tresBt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onClick"
+            android:text="@string/tres" />
+
     </LinearLayout>
 
     <Button
-        android:id="@+id/limparBt"
+        android:id="@+id/zeroBt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="onClick"
-        android:text="@string/limpar" />
+        android:text="@string/zero" />
 
 </LinearLayout>
