@@ -1,10 +1,11 @@
 package br.edu.ifsp.scl.ads.helloworld;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             visorTv.setText(savedInstanceState.getString(VALOR_VISOR_TV, ""));
         }
+
+        getSupportActionBar().setSubtitle("Tela principal");
     }
 
     @Override
@@ -71,6 +74,29 @@ public class MainActivity extends AppCompatActivity {
         super.onRestoreInstanceState(savedInstanceState);
         Log.v(getString(R.string.app_name), "onRestoreInstanceState executado - restaurando dados de instância");
         //visorTv.setText(savedInstanceState.getString(VALOR_VISOR_TV, ""));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.configuracoesMi:
+                Intent configuracoesIntent = new Intent(this, ConfiguracoesActivity.class);
+                startActivity(configuracoesIntent);
+                return true;
+
+            case R.id.sairMi:
+                finish();
+                return true;
+
+            default:
+                return false;
+        }
     }
 
     public void onClick(View view) {

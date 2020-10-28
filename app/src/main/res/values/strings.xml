@@ -13,4 +13,6 @@
     <string name="nove">9</string>
     <string name="oito">8</string>
     <string name="sete">7</string>
+    <string name="configuracoes">Configurações</string>
+    <string name="sair">Sair</string>
 </resources>
