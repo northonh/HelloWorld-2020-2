@@ -1,6 +1,7 @@
 package br.edu.ifsp.scl.ads.helloworld;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -93,7 +94,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent configuracoesIntent = new Intent("CONFIGURACOES");
                 startActivity(configuracoesIntent);
                 return true;
-
+            case R.id.siteIfspMi:
+                // Definir a URL
+                Uri siteIfspUri = Uri.parse("https://www.ifsp.edu.br");
+                Intent siteIfspIntent = new Intent(Intent.ACTION_VIEW, siteIfspUri);
+                startActivity(siteIfspIntent);
+                return true;
             case R.id.sairMi:
                 finish();
                 return true;
