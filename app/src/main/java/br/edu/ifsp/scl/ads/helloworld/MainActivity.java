@@ -1,13 +1,17 @@
 package br.edu.ifsp.scl.ads.helloworld;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +19,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
     // Constante para salvamento/restauração de variáveis de instância
     private final String VALOR_VISOR_TV = "VALOR_VISOR_TV";
+
+    // Constantes para solicitação de permissões
+    private final int CALL_PHONE_PERMISSION_REQUEST_CODE = 0;
 
     // referência para os objetos Button definidos no leiaute
     private TextView visorTv;
@@ -100,12 +107,44 @@ public class MainActivity extends AppCompatActivity {
                 Intent siteIfspIntent = new Intent(Intent.ACTION_VIEW, siteIfspUri);
                 startActivity(siteIfspIntent);
                 return true;
+            case R.id.chamarIfspMi:
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        requestPermissions(new String[] {Manifest.permission.CALL_PHONE}, CALL_PHONE_PERMISSION_REQUEST_CODE);
+                    }
+                }
+                chamarIfsp();
+                return true;
             case R.id.sairMi:
                 finish();
                 return true;
 
             default:
                 return false;
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == CALL_PHONE_PERMISSION_REQUEST_CODE) {
+           for (int resultado: grantResults) {
+               if (resultado != PackageManager.PERMISSION_GRANTED) {
+                   Toast.makeText(this, "Permissão necessária não concedida", Toast.LENGTH_SHORT).show();
+                   finish();
+               }
+           }
+           chamarIfsp();
+        }
+    }
+
+    private void chamarIfsp() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (checkSelfPermission(Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+                Uri chamarIfspUri = Uri.parse("tel:1137754501");
+                Intent chamarIfspIntent = new Intent(Intent.ACTION_CALL, chamarIfspUri);
+                startActivity(chamarIfspIntent);
+            }
         }
     }
 

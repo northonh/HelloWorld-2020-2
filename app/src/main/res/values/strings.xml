@@ -16,4 +16,5 @@
     <string name="configuracoes">Configurações</string>
     <string name="sair">Sair</string>
     <string name="site_ifsp">Site IFSP</string>
+    <string name="chamar_ifsp">Chamar IFSP</string>
 </resources>
