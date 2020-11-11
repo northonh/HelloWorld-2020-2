@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,9 +23,16 @@ public class MainActivity extends AppCompatActivity {
 
     // Constantes para solicitação de permissões
     private final int CALL_PHONE_PERMISSION_REQUEST_CODE = 0;
+    private final int CONFIGURACOES_REQUEST_CODE = 1;
+
+    // Constante para o envio de parâmetros para a ConfiguracoesActivity
+    public static final String EXTRA_CONFIGURACOES = "EXTRA_CONFIGURACOES";
 
     // referência para os objetos Button definidos no leiaute
     private TextView visorTv;
+
+    // Referência para objeto que armazena as configurações
+    private Configuracoes configuracoes = new Configuracoes(false);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +107,9 @@ public class MainActivity extends AppCompatActivity {
 
                 // Definindo uma ação (Action) particular do nosso aplicativo
                 Intent configuracoesIntent = new Intent("CONFIGURACOES");
-                startActivity(configuracoesIntent);
+                configuracoesIntent.putExtra(EXTRA_CONFIGURACOES, configuracoes);
+
+                startActivityForResult(configuracoesIntent, CONFIGURACOES_REQUEST_CODE);
                 return true;
             case R.id.siteIfspMi:
                 // Definir a URL
@@ -181,6 +191,20 @@ public class MainActivity extends AppCompatActivity {
             case R.id.noveBt:
                 visorTv.setText(getString(R.string.nove));
                 break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CONFIGURACOES_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            configuracoes = data.getParcelableExtra(EXTRA_CONFIGURACOES);
+            if (configuracoes != null && configuracoes.getAvancada()) {
+                findViewById(R.id.raizQuadradaBt).setVisibility(View.VISIBLE);
+            }
+            else {
+                findViewById(R.id.raizQuadradaBt).setVisibility(View.GONE);
+            }
         }
     }
 }

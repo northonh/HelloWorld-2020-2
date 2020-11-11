@@ -114,4 +114,12 @@
         android:onClick="onClick"
         android:text="@string/zero" />
 
+    <Button
+        android:id="@+id/raizQuadradaBt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:visibility="gone"
+        android:text="@string/raiz_quadrada" />
+
 </LinearLayout>
